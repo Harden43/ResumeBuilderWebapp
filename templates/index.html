@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian Resume Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+        <em>Enable Dark Mode</em>
+    </div>
+    <h1>Resume Builder</h1>
+    <div class="progress-bar" id="progress-bar"></div>
+    <form method="POST" id="resume-form">
+        <h2>Personal Information</h2>
+        <input type="text" name="name" placeholder="Your Full Name">
+        <input type="text" name="address" placeholder="City, Province, Postal Code">
+        <input type="email" name="email" placeholder="Your Email Address">
+        <input type="tel" name="phone" placeholder="Your Phone Number">
+        <input type="url" name="linkedin" placeholder="LinkedIn Profile (optional)">
+
+        <h2>Professional Summary</h2>
+        <textarea name="summary"
+            placeholder="Write a brief 2-3 sentence summary of your experience and skills.">{{ resume.summary }}</textarea>
+
+        <h2>Work Experience</h2>
+        <div id="experience-fields">
+            {% for job in resume.experience %}
+            <div class="experience-entry">
+                <input type="text" name="job_title" placeholder="Job Title" value="{{ job.title }}">
+                <input type="text" name="company" placeholder="Company Name, City, Province" value="{{ job.company }}">
+                <input type="text" name="dates" placeholder="May 20XX – Present" value="{{ job.dates }}">
+                <div class="responsibility-list">
+                    {% for resp in job.responsibilities %}
+                    <div class="responsibility-item">
+                        <input type="text" placeholder="Describe an achievement or responsibility" value="{{ resp }}">
+                        <button type="button" class="remove-btn" onclick="removeField(this)">Remove</button>
+                    </div>
+                    {% endfor %}
+                </div>
+                <button type="button" onclick="addResponsibility(this)">Add Achievement</button>
+                <input type="hidden" name="responsibilities" value="{{ job.responsibilities|join('|') }}">
+                <button type="button" class="remove-btn" onclick="removeField(this)">Remove Experience</button>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="button" onclick="addExperienceField()">Add Experience</button>
+
+        <h2>Education</h2>
+        <div id="education-fields">
+            {% for edu in resume.education %}
+            <div class="education-entry">
+                <input type="text" name="degree" placeholder="Degree or Diploma" value="{{ edu.degree }}">
+                <input type="text" name="institution" placeholder="Institution Name, City, Province"
+                    value="{{ edu.institution }}">
+                <input type="text" name="graduation_date" placeholder="May 20XX" value="{{ edu.graduation_date }}">
+                <button type="button" class="remove-btn" onclick="removeField(this)">Remove Education</button>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="button" onclick="addEducationField()">Add Education</button>
+
+        <h2>Skills</h2>
+        <input type="text" name="skills" placeholder="Enter skills separated by commas"
+            value="{{ resume.skills|join(', ') }}">
+
+        <h2>Certifications</h2>
+        <input type="text" name="certifications" placeholder="Enter certifications separated by commas"
+            value="{{ resume.certifications|join(', ') }}">
+
+        <h2>Volunteer Experience</h2>
+        <textarea name="volunteer" placeholder="Describe your volunteer experience">{{ resume.volunteer }}</textarea>
+
+        <h2>Personal Projects</h2>
+        <textarea name="projects" placeholder="Describe any relevant personal projects">{{ resume.projects }}</textarea>
+
+        <button type="submit" id="Generatebtn">Generate Resume</button>
+    </form>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

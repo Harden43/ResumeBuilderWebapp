@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if resume.name %}{{ resume.name }} - {% endif %}Resume</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+        <em>Enable Dark Mode</em>
+    </div>
+    <div class="resume">
+        {% if resume.name %}<h1>{{ resume.name }}</h1>{% endif %}
+        {% if resume.address or resume.email or resume.phone %}
+        <p>
+            {% if resume.address %}{{ resume.address }}{% endif %}
+            {% if resume.email %}{% if resume.address %} | {% endif %}{{ resume.email }}{% endif %}
+            {% if resume.phone %}{% if resume.address or resume.email %} | {% endif %}{{ resume.phone }}{% endif %}
+        </p>
+        {% endif %}
+        {% if resume.linkedin %}
+        <p>LinkedIn: {{ resume.linkedin }}</p>
+        {% endif %}
+
+        {% if resume.summary %}
+        <h2>Professional Summary</h2>
+        <p>{{ resume.summary }}</p>
+        {% endif %}
+
+        {% if resume.experience %}
+        <h2>Work Experience</h2>
+        {% for job in resume.experience %}
+        <h3>{{ job.title }}</h3>
+        <p>{{ job.company }}{% if job.dates %} | {{ job.dates }}{% endif %}</p>
+        {% if job.responsibilities %}
+        <ul>
+            {% for responsibility in job.responsibilities %}
+            <li>{{ responsibility }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if resume.education %}
+        <h2>Education</h2>
+        {% for edu in resume.education %}
+        <h3>{{ edu.degree }}</h3>
+        <p>{{ edu.institution }}{% if edu.graduation_date %} | {{ edu.graduation_date }}{% endif %}</p>
+        {% endfor %}
+        {% endif %}
+
+        {% if resume.skills %}
+        <h2>Skills</h2>
+        <ul>
+        {% for skill in resume.skills %}
+            {% if skill %}<li>{{ skill }}</li>{% endif %}
+        {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if resume.certifications %}
+        <h2>Certifications</h2>
+        <ul>
+        {% for cert in resume.certifications %}
+            {% if cert %}<li>{{ cert }}</li>{% endif %}
+        {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if resume.volunteer %}
+        <h2>Volunteer Experience</h2>
+        <p>{{ resume.volunteer }}</p>
+        {% endif %}
+
+        {% if resume.projects %}
+        <h2>Personal Projects</h2>
+        <p>{{ resume.projects }}</p>
+        {% endif %}
+    </div>
+    <div>
+        <button id="download-pdf">Download PDF</button>
+        <button id="download-docx">Download Word Document</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

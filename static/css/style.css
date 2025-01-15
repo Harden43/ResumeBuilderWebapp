@@ -1,0 +1,256 @@
+/* Base styles */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    line-height: 1.4;
+    margin: 0;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+    background-color: #f7f7f7;
+    color: #333;
+    font-size: 12px;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="black"/></svg>') 5 5, auto;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10 10 L90 90 M90 10 L10 90" stroke="%23ddd" stroke-width="2"/></svg>');
+}
+
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="white"/></svg>') 5 5, auto;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10 10 L90 90 M90 10 L10 90" stroke="%23333" stroke-width="2"/></svg>');
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.resume {
+    background-color: #ffffff0c;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+h1, h2, h3 {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 28px;
+    color: #ff6b6b;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 18px;
+    color: #4ecdc4;
+}
+
+h3 {
+    font-size: 14px;
+    color: #45b7d1;
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, textarea, select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 12px;
+    font-family: inherit;
+    font-size: 12px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    background-color: #f9f9f9;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.2);
+    transform: scale(1.02);
+}
+
+button {
+    background-color: #4ecdc4;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 120px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #45b7d1;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cstyle%3E@keyframes rotate %7B from %7B transform: rotate(0deg); %7D to %7B transform: rotate(360deg); %7D %7D path %7B animation: rotate 0.5s linear infinite; transform-origin: center; %7D%3C/style%3E%3Cpath d='M11 2h2v20h-2zM2 11h20v2h-20z' fill='%23000000'%3E%3CanimateTransform attributeName='transform' attributeType='XML' type='rotate' from='0 12 12' to='360 12 12' dur='2s' repeatCount='indefinite' /%3E%3C/path%3E%3C/svg%3E") 12 12, auto;
+}
+
+.remove-btn {
+    background-color: #ff6b6b;
+}
+
+.remove-btn:hover {
+    background-color: #ff8787;
+}
+
+/* Theme switch styles */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 28px;
+    position: relative;
+    width: 50px;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s ease-in-out;
+    border-radius: 34px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 20px;
+    left: 4px;
+    position: absolute;
+    transition: .4s ease-in-out;
+    width: 20px;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4ecdc4;
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* Progress bar styles */
+.progress-bar {
+    place-self: center;
+    width: 100%;
+    max-width: 800px;
+    height: 4px;
+    background-color: #e0e0e0;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #4ecdc4;
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+    position: relative;
+}
+
+.progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 50px 50px;
+    animation: move 2s linear infinite;
+    overflow: hidden;
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px) rotate(-5deg); }
+    to { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+
+.resume, .experience-entry, .education-entry {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .resume {
+        padding: 15px;
+    }
+    
+    h1 { font-size: 24px; }
+    h2 { font-size: 16px; }
+    h3 { font-size: 14px; }
+}
+
+#Generatebtn {
+    margin-top: 30px;
+    background-color: #ff6b6b;
+}
+
+#Generatebtn:hover {
+    background-color: #ff8787;
+}
+
